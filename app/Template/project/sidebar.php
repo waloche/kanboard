@@ -63,5 +63,12 @@
             <?= $this->a(t('Daily project summary'), 'export', 'summary', array('project_id' => $project['id'])) ?>
         </li>
     </ul>
+    
+	<h2><?= t('Imports') ?></h2>
+    <ul>
+        <li>
+            <?= $this->a(t('Tasks'), 'import', 'tasks', array('project_id' => $project['id'])) ?>
+        </li>
+    </ul>
     <?php endif ?>
 </div>
