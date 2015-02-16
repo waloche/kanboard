@@ -197,4 +197,32 @@ class File extends Base
 
         return count(array_unique($result)) === 1;
     }
+    /**
+     * Handle CSV file upload for task importation
+     *
+     * @access public
+     * @param  integer $project_id Project id
+     * @param  string $form_name File form name
+     * @return array with file path
+     */	
+	public function uploadTasks($project_id, $form_name)
+    {
+        $this->setup();
+        $result = array();
+
+        if (! empty($_FILES[$form_name])) {
+
+            foreach ($_FILES[$form_name]['error'] as $key => $error) {
+
+                if ($error == UPLOAD_ERR_OK && $_FILES[$form_name]['size'][$key] > 0) {
+
+                    $original_filename = basename($_FILES[$form_name]['name'][$key]);
+                    $uploaded_filename = $_FILES[$form_name]['tmp_name'][$key];
+		
+					return array($uploaded_filename);
+                }
+            }
+        }
+		return array();
+	}
 }
